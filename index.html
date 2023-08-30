@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Criteria List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="loaderContainer">
+    <div id="loaderSub">
+      <div id="loaderSpinner"></div>
+      <div id="loaderText">Loading...</div>
+    </div>
+    <!-- <div id="newLoaderSub">
+      <div id="loaderTop"></div>
+      <div id="loaderBase">
+        <div id="loaderBlockTopLeft"></div>
+        <div id="loaderBlockTopRight"></div>
+        <div id="loaderBlockBottom"></div>
+      </div>
+    </div> -->
+  </div>
+
+  <div class="container">
+    <div>
+      <h1 class="header">Housing Stat API</h1>
+      <div id="criteria-form" class="criteria-form">
+        <select id="field" class="input-field" onchange="handleFieldChange()">
+          <option value="Strassenbezeichnung">Strassenbezeichnung</option>
+          <option value="Ort">Ort</option>
+          <option value="Plz">Plz</option>
+          <option value="HausNummer">Haus Nummer</option>
+          <option value="AnzahlGeschosse">Anzahl Geschosse</option>
+          <option value="Baujahr">Baujahr</option>
+          <option value="Gebaeudestatus">Gebäudestatus</option>
+          <option value="Gebaeudeklasse">Gebäudeklasse</option>
+          <option value="Gebaeudekategorie">Gebäudekategorie</option>
+          <!-- Add your field options here -->
+        </select>
+        <select id="operator" class="input-field">
+          <option value="ist gleich">ist gleich</option>
+          <option value="ist gleich">ist gleich</option>
+          <option value="ist ungleich">ist ungleich</option>
+          <option value="ist kleiner als">ist kleiner als</option>
+          <option value="ist kleiner oder gleich">ist kleiner oder gleich</option>
+          <option value="ist grösser als">ist grösser als</option>
+          <option value="ist grösser oder gleich">ist grösser oder gleich</option>
+          <!-- Add your operator options here -->
+        </select>
+
+        <input type="text" id="value" class="input-field" placeholder="Enter Value">
+        <div class="helper">
+          <button class="helper-button">?</button>
+          <div class="helper-content" id="helperContent">
+            <!-- filled with javascript -->
+          </div>
+        </div>
+
+        <button id="add-button" class="add-button button">Add Criteria</button>
+      </div>
+      <div id="criteria-container" class="criteria-container"></div>
+    </div>
+  </div>
+  <div class="second-container">
+    <button id="submit-button" class="submit-button button">Submit</button>
+  </div>
+  <div class="third-container">
+    <!-- <button class="accordion">House 1 Address</button>
+    <div class="panel">
+      <div class="tab">
+        <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Details', '0')">Details</button>
+        <button class="tablinks" onclick="openCity(event, 'Appartments', '0')">Wohnungen</button>
+      </div>
+
+      Tab content 
+      <div id="Details0" class="tabcontent">
+        <div class="house-details-container">
+          <div class="house-detail-item" id="egid-0">
+            <span class="house-detail-name">EGID</span>
+            <span class="house-detail-value">3523652365</span>
+          </div>
+          <div class="house-detail-item" id="strasenbezeichnung-0">
+            <span class="house-detail-name">Strassenbezeichnung</span>
+            <span class="house-detail-value">Erikastrasse</span>
+          </div>
+          <div class="house-detail-item" id="hausnummer-0">
+            <span class="house-detail-name">House Nummer</span>
+            <span class="house-detail-value">21</span>
+          </div>
+          <div class="house-detail-item" id="plz-0">
+            <span class="house-detail-name">Plz</span>
+            <span class="house-detail-value">8003</span>
+          </div>
+          <div class="house-detail-item" id="ort-0">
+            <span class="house-detail-name">Ort</span>
+            <span class="house-detail-value">Zürich</span>
+          </div>
+          <div class="house-detail-item" id="gebaeudeart-0">
+            <span class="house-detail-name">Gebäudefläche</span>
+            <span class="house-detail-value">186m2</span>
+          </div>
+          <div class="house-detail-item" id="energiebezugsflaeche-0">
+            <span class="house-detail-name">Energiebezugsfläche</span>
+            <span class="house-detail-value">1302m2</span>
+          </div>
+          <div class="house-detail-item" id="gebaudevolumen-0">
+            <span class="house-detail-name">Gebäudevolumen</span>
+            <span class="house-detail-value">-</span>
+          </div>
+          <div class="house-detail-item" id="anzahlGeschosse-0">
+            <span class="house-detail-name">Anz. Geschosse</span>
+            <span class="house-detail-value">7</span>
+          </div>
+          <div class="house-detail-item" id="anzahlSeparateWohnraeume-0">
+            <span class="house-detail-name">Anz. separate Wohnräume</span>
+            <span class="house-detail-value">-</span>
+          </div>
+          <div class="house-detail-item" id="zivilschutzraum-0">
+            <span class="house-detail-name">Zivilschutzraum</span>
+            <span class="house-detail-value">Nein</span>
+          </div>
+          <div class="house-detail-item" id="baujahr-0">
+            <span class="house-detail-name">Gebäudestatus</span>
+            <span class="house-detail-value">1004 bestehend</span>
+          </div>
+          <div class="house-detail-item" id="gebauedekategorie-0">
+            <span class="house-detail-name">Gebäudekategorie</span>
+            <span class="house-detail-value">1030 Wohnhaus m. Nebennutzung</span>
+          </div>
+          <div class="house-detail-item" id="gebaeudeklasse-0">
+            <span class="house-detail-name">Gebäudeklasse</span>
+            <span class="house-detail-value">1122 Gebäude mit 3+ Whgen</span>
+          </div>
+          <div class="house-detail-item" id="baudaum-0">
+            <span class="house-detail-name">Baudatum</span>
+            <span class="house-detail-value">01.1947</span>
+          </div>
+          <div class="house-detail-item" id="bauperiode-0">
+            <span class="house-detail-name">Bauperiode</span>
+            <span class="house-detail-value">1946-1960</span>
+          </div>
+          <div class="house-detail-item" id="abbruchjahr-0">
+            <span class="house-detail-name">Abbruchjahr</span>
+            <span class="house-detail-value">-</span>
+          </div>
+          <div class="house-detail-item" id="waeermeerzeugerHeizSystem-0">
+            <span class="house-detail-name">Wärmeerzeuger (Heiz System)</span>
+            <span class="house-detail-value">7430 Heizkessel (gene.) für ein Geb.</span>
+          </div>
+          <div class="house-detail-item" id="energietraegerHeizSystem-0">
+            <span class="house-detail-name">Energieträger (Heiz System)</span>
+            <span class="house-detail-value">7530 Heizöl</span>
+          </div>
+          <div class="house-detail-item" id="informationsquelleHeizSystem-0">
+            <span class="house-detail-name">Informationsquelle (Heiz System)</span>
+            <span class="house-detail-value">859 Andere</span>
+          </div>
+          <div class="house-detail-item" id="aktualisierungsdatumHeizSystem-0">
+            <span class="house-detail-name">Aktualisierungsdatum (Heiz System)</span>
+            <span class="house-detail-value">27.07.2021</span>
+          </div>
+          <div class="house-detail-item" id="waermeerzeugerWarmwasser-0">
+            <span class="house-detail-name">Wärmeerzeuger (Warmwasser)</span>
+            <span class="house-detail-value">7630 Heizkessel (generisch).</span>
+          </div>
+          <div class="house-detail-item" id="energietraegerWarmwasser-0">
+            <span class="house-detail-name">Energieträger (Warmwasser)</span>
+            <span class="house-detail-value">7530 Heizöl</span>
+          </div>
+          <div class="house-detail-item" id="informationsquelleWarmwasser-0">
+            <span class="house-detail-name">Informationsquelle (Warmwasser)</span>
+            <span class="house-detail-value">859 Andere</span>
+          </div>
+          <div class="house-detail-item" id="aktualisierungsdatumWarmwasser-0">
+            <span class="house-detail-name">Aktualisierungsdatum (Warmwasser)</span>
+            <span class="house-detail-value">27.07.2021</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="Appartments0" class="tabcontent">
+        <div class="appartment-table-container">
+          <table class="my-table">
+            <tr class="header">
+              <th style="width:auto;">EWID</th>
+              <th style="width:auto;">Fläche</th>
+              <th style="width:auto;">AdminNr</th>
+              <th style="width:auto;">PhysNr</th>
+              <th style="width:auto;">Stockwerk</th>
+              <th style="width:auto;">Anz. Zimmer</th>
+              <th style="width:auto;">Lage</th>
+              <th style="width:auto;">Status</th>
+              <th style="width:auto;">Küche</th>
+              <th style="width:auto;">Baujahr</th>
+              <th style="width:auto;">Abbruchjahr</th>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+            <tr class="row">
+              <td>1</td>
+              <td>76m2</td>
+              <td>-</td>
+              <td>101</td>
+              <td>1. Stock</td>
+              <td>3</td>
+              <td>-</td>
+              <td>bestehend</td>
+              <td>Ja</td>
+              <td>1999</td>
+              <td>-</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">House 2 Address</button>
+    <div class="panel">
+      <p>Lorem ipsum...</p>
+    </div>
+
+    <button class="accordion">House 3 Address</button>
+    <div class="panel">
+
+    </div> -->
+  </div>
+
+  <script src="script.js"></script>
+  <script src="xmlToJson.js"></script>
+</body>
+
+</html>

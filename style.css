@@ -1,0 +1,525 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header {
+  color: #555;
+}
+
+#loaderContainer {
+  position: fixed;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+#loaderSpinner {
+  border: 15px solid transparent;
+  width: 8rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border-top-color: red;
+  border-bottom-color: blue;
+  animation: spin 2s linear infinite;
+}
+#loaderSub {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loaderText {
+  position: absolute;
+}
+
+@keyframes spin {
+  100% {
+    border-top-color: red;
+    border-bottom-color: blue;
+    transform: rotate(360deg);
+  }
+  50% {
+    border-top-color: rgba(255, 0, 0, 0.150);
+    border-bottom-color: rgba(0, 0, 255, 0.150);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+}
+
+#newLoaderSub {
+  background-color: #b3b3b3;
+}
+#loaderBase {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  row-gap: 0.2rem;
+  column-gap: 0.2rem;
+}
+#loaderBase div {
+  border-radius: 5px;
+}
+#loaderBlockBottom {
+  width: 6rem;
+  height: 3rem;
+  background-color: #d14040;
+  grid-row: 2;
+  grid-column: 1 / 3;
+}
+#loaderBlockTopLeft {
+  width: 3rem;
+  height: 3rem;
+  background-color: #0fa52f;
+}
+#loaderBlockTopRight {
+  width: 3rem;
+  height: 3rem;
+  background-color: #471da8;
+}
+#loaderTop {
+  width: 6rem;
+  height: 3rem;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  background-color: #1c551f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  margin: 2rem auto 2rem auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 50%;
+  /* overflow-x: scroll;
+  overflow-y: hidden; */
+}
+
+.second-container {
+  margin: 0 auto;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+.third-container {
+  margin: 0 auto;
+  padding: 20px;
+  width: 50%;
+  border: 1px solid #ccc;
+}
+
+.secondary-header {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.criteria-container {
+  margin-top: 20px;
+  transition: height 0.2s ease;
+}
+
+.criteria-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: fit-content;
+  width: 100%;
+}
+
+.input-field {
+  padding: 8px;
+  margin: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.helper-button {
+  background-color: #b3b3b3;
+  color: white;
+  /* padding: 16px;
+  font-size: 16px; */
+  border: none;
+}
+
+.helper {
+  position: relative;
+  display: inline-block;
+  transform: translateX(-1.5rem);
+}
+
+.helper-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.helper-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.helper-content a:hover {background-color: #ddd;}
+
+.helper:hover .helper-content {display: block;}
+
+.helper:hover .helper-button {background-color: #7c7c7c;}
+
+.add-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: center;
+  margin: 10px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.criteria-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 2em;
+  background-color: #ccc;
+  animation: animate-append 0.2s linear;
+  transition: height 0.2s ease;
+}
+
+.criteria-item span {
+  margin-right: 10px;
+  width: 30%;
+}
+
+.remove-button {
+  padding: 4px 8px;
+  background-color: #ff5c5c;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hidden-item {
+  /* opacity: 0; */
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+.hidden-item * {
+  visibility: hidden;
+}
+
+.remove-button:hover {
+  background-color: #e24949;
+  transition: scale 0.2s;
+}
+
+.remove-button:hover {
+  scale: 1.1;
+}
+
+.submit-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 24px;
+  white-space: nowrap;
+  text-align: center;
+  margin: 10px;
+}
+
+.button{
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color: #45a049;
+  scale: 1.1;
+}
+
+.button:active {
+  background-color: #1c551f;
+  scale: 1.1;
+}
+@keyframes animate-append {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  opacity: 0;
+}
+
+.accordion.animate {
+  animation: animate-accordion-in 0.5s ease-out;
+  opacity: 1;
+}
+@keyframes animate-accordion-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  80% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  margin-top: 1rem;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.active + .panel {
+  margin-bottom: 1rem;
+}
+
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.tab-active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.tabcontent-active {
+  display: block;
+}
+
+/* .tabcontent-active .house-detail-item {
+  animation: animate-expand-in 0.3s ease-out;
+} */
+
+.row {
+  opacity: 0;
+}
+
+.tabcontent-active .row-expand-in {
+  animation: animate-expand-in 0.2s ease-out;
+  opacity: 1;
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.my-table {
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%;
+  border: 1px solid #ddd; /* Add a grey border */
+  font-size: 15px; /* Increase font-size */
+}
+
+.my-table th, .my-table td {
+  text-align: left; /* Left-align text */
+  padding: 12px; /* Add padding */
+}
+
+.my-table tr {
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+.my-table tr.header, .my-table tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+}
+
+.house-details-container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: visible;
+}
+.house-detail-item {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  gap: .5em;
+  background-color: #eee;
+  padding: .5em;
+  flex: 1;
+  transition: all 0.1s ease-out;
+  position: relative;
+  box-shadow: none;
+  opacity: 0;
+}
+.tabcontent-active .house-detail-item.copied::before {
+  content: 'Kopiert';
+  position: absolute;
+  top: -1em;
+  left: 0;
+  color: #1c551f;
+  animation: copied 1s ease-in-out;
+  opacity: 0;
+}
+
+@keyframes copied {
+  0% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  5% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.house-detail-item.item-expand-in {
+  animation: item-expand-in 0.5s ease-out;
+  opacity: 1;
+}
+
+@keyframes item-expand-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.house-detail-item:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+  transform: scale(1.05);
+}
+.house-detail-item.clicked {
+  animation: boxShaddow .2s linear;
+}
+@keyframes boxShaddow {
+  0% {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+
+  }
+}
+.house-detail-value {
+  white-space: break-spaces;
+}
+
+.house-detail-name {
+  font-weight: 600;
+}
+
+@keyframes animate-expand-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+  }
+}
